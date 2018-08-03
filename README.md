@@ -4,6 +4,18 @@ This is the starter template for the final assessment project for Udacity's Reac
 
 Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
 
+# Project ToDo Notes
+
+1. Break down Shelves and Books into components:
+    * Shelf (Current Reading, Want to Read, Read)
+    * Book
+2. Allow switching of Books to different shelfs
+3. Create search section
+    * Rendering all books
+    * Routing to and from root
+    * Text search filtering
+  
+
 ## TL;DR
 
 To get started developing right away:
