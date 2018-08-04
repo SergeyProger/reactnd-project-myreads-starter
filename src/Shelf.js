@@ -7,8 +7,6 @@ class Shelf extends Component {
       return book.shelf === this.props.filter_category
     });
 
-    console.log("For shelf "+this.props.filter_category+" books are: ", books);
-
     return (
       books.length > 0 && (
         <div className="bookshelf">
