@@ -7,19 +7,7 @@ class Book extends Component {
   };
 
   changeShelf = (event) => {
-    const new_shelf = event.target.value;
-    const info = this.state.info;
-    if(new_shelf === 'none') {
-      delete info.shelf;
-    } else {
-      info.shelf = new_shelf;
-    }
-
-    this.setState(() => ({
-      info: info
-    }));
-
-    this.props.updateBook(this.props.info);
+    this.props.updateBookShelf(this.state.info, event.target.value);
   };
 
   render() {
