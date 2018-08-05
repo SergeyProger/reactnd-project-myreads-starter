@@ -25,11 +25,11 @@ class BooksApp extends React.Component {
     })
   }
 
-  moveBook = (book, new_shelf) => {
-    book.shelf = new_shelf;
+  updateBook = (book) => {
     this.setState((currentState) => ({
-      books: currentState.books.filter((b) => (b.id !== book.id)).concat(book)
-    }))
+      ...currentState,
+      book
+    }));
   };
 
   render() {
@@ -45,9 +45,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf title="Currently Reading" books={this.state.books} filter_category="currentlyReading" onChangeShelf={this.moveBook} />
-                <Shelf title="Want to Read" books={this.state.books} filter_category="wantToRead" onChangeShelf={this.moveBook} />
-                <Shelf title="Read" books={this.state.books} filter_category="read" onChangeShelf={this.moveBook} />
+                <Shelf title="Currently Reading" books={this.state.books} filter_category="currentlyReading" updateBook={this.updateBook} />
+                <Shelf title="Want to Read" books={this.state.books} filter_category="wantToRead" updateBook={this.updateBook} />
+                <Shelf title="Read" books={this.state.books} filter_category="read" updateBook={this.updateBook} />
               </div>
             </div>
             <div className="open-search">

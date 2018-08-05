@@ -3,11 +3,23 @@ import React, { Component } from 'react'
 class Book extends Component {
 
   state = {
-    bookshelf: this.props.info.shelf
+    info: this.props.info
   };
 
   changeShelf = (event) => {
-    this.props.onChangeShelf(this.props.info, event.target.value);
+    const new_shelf = event.target.value;
+    const info = this.state.info;
+    if(new_shelf === 'none') {
+      delete info.shelf;
+    } else {
+      info.shelf = new_shelf;
+    }
+
+    this.setState(() => ({
+      info: info
+    }));
+
+    this.props.updateBook(this.props.info);
   };
 
   render() {
@@ -17,10 +29,10 @@ class Book extends Component {
           <div className="book-cover" style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${this.props.info.imageLinks.thumbnail})`
+            backgroundImage: `url(${this.state.info.imageLinks.thumbnail})`
           }}></div>
           <div className="book-shelf-changer">
-            <select value={this.state.bookshelf} onChange={this.changeShelf}>
+            <select value={this.state.info.shelf} onChange={this.changeShelf}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -29,8 +41,8 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{this.props.info.title}</div>
-        <div className="book-authors">{this.props.info.authors.join(', ')}</div>
+        <div className="book-title">{this.state.info.title}</div>
+        <div className="book-authors">{this.state.info.authors.join(', ')}</div>
       </div>
     )
   }
