@@ -32,10 +32,11 @@ class Search extends Component {
   };
 
   setShelfAttributes(books_in_search) {
-    /* The BooksAPI.search returns books without shelf attributes.
+    /*
+     * The BooksAPI.search returns books without shelf attributes.
      * This function parses through the books coming back from the
      * BooksAPI and if the same book is found on one of the shelves 
-     * it replaces it.
+     * then replace it.
      */
     const books_on_shelves = this.props.booksOnShelves;
     const books_in_search_with_shelf_attributes = [];
