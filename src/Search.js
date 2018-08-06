@@ -10,13 +10,11 @@ class Search extends Component {
   };
 
   searchBooks = (query) => {
-    if(query.length > 0) {
-      BooksAPI.search(query).then((books) => {
-        this.setState({
-          books: this.setShelfAttributes(books)
-        })
-      });
-    }
+    BooksAPI.search(query).then((books) => {
+      this.setState({
+        books: this.setShelfAttributes(books)
+      })
+    });
   };
 
   updateQuery = (query) => {
