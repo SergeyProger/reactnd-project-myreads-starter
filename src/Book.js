@@ -7,20 +7,31 @@ class Book extends Component {
   };
 
   changeShelf = (event) => {
-    this.props.updateBookShelf(this.state.info, event.target.value);
+    const shelf = event.target.value;
+
+    this.setState((previousState) => ({
+      info: {
+        ...previousState.info,
+        shelf: shelf
+      }
+    }));
+
+    this.props.updateBookShelf(this.state.info, shelf);
   };
 
   render() {
+    const info = this.state.info;
+
     return (
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${this.state.info.imageLinks.thumbnail})`
+            backgroundImage: `url(${info.imageLinks.thumbnail})`
           }}></div>
           <div className="book-shelf-changer">
-            <select value={this.state.info.shelf || 'none'} onChange={this.changeShelf}>
+            <select value={info.shelf || 'none'} onChange={this.changeShelf}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -29,8 +40,8 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{this.state.info.title}</div>
-        <div className="book-authors">{this.state.info.authors.join(', ')}</div>
+        <div className="book-title">{info.title}</div>
+        <div className="book-authors">{info.authors && info.authors.join(', ')}</div>
       </div>
     )
   }
